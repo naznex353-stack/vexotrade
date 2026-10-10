@@ -266,6 +266,9 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
 .lang button.active{background:var(--gold-soft); color:var(--gold)}
 .lang button:not(.active):hover{color:var(--fg)}
 #mobileMenu .lang-m{margin:16px 4px 0}
+.lang-one{font-family:var(--f-mono); font-size:12px; letter-spacing:.06em; padding:8px 12px; border:1px solid var(--gold-line); border-radius:10px; background:var(--gold-soft); color:var(--gold); cursor:pointer}
+.lang-one:hover{border-color:var(--gold)}
+#mobileMenu .lang-one-m{margin:16px 4px 0}
 @media (max-width:620px){ .nav-right .lang{display:none} }
 
 /* responsive */
@@ -372,7 +375,7 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
     </div>
     <div class="nav-right">
       <a href="auth/login.html" class="signin">Sign In</a>
-      <div class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="es">ES</button></div>
+      <button class="lang-one" data-lang="en" aria-label="Change language">ES</button>
       <a href="#programs" class="btn btn-gold btn-sm">Get Funded</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -380,7 +383,7 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
   <div id="mobileMenu"><div class="mwrap">
     <a href="#programs">Funded Programs</a><a href="#rules">Trading Rules</a><a href="#payouts">Payouts</a>
     <a href="#how">How It Works</a><a href="#faq">FAQ</a><a href="#about">About</a>
-    <div class="lang lang-m" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="es">ES</button></div>
+    <button class="lang-one lang-one-m" data-lang="en" aria-label="Change language">ES</button>
     <div class="mcta"><a href="auth/login.html" class="btn btn-dark btn-sm">Sign In</a><a href="#programs" class="btn btn-gold btn-sm">Get Funded</a></div>
   </div></div>
 </header>
@@ -851,7 +854,7 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
   var tw=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), tn;
   while((tn=tw.nextNode())){
     var tp=tn.parentNode;
-    if(tn.nodeValue.trim() && !(tp && (tp.tagName==='SCRIPT'||tp.tagName==='STYLE')) && !(tp && tp.closest && tp.closest('.brand'))) textItems.push({n:tn, en:tn.nodeValue});
+    if(tn.nodeValue.trim() && !(tp && (tp.tagName==='SCRIPT'||tp.tagName==='STYLE')) && !(tp && tp.closest && tp.closest('.brand,.lang-one'))) textItems.push({n:tn, en:tn.nodeValue});
   }
   var attrItems=[];
   document.querySelectorAll('[aria-label]').forEach(function(el){ attrItems.push({el:el, en:el.getAttribute('aria-label')}); });
@@ -873,6 +876,7 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
     });
     if(typeof showStep==='function' && typeof stepIdx==='number') showStep(stepIdx);
     document.querySelectorAll('[data-lang]').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===l); });
+    document.querySelectorAll('.lang-one').forEach(function(b){ var o=(l==='es')?'en':'es'; b.setAttribute('data-lang',o); b.textContent=l.toUpperCase(); b.setAttribute('aria-label', l==='es'?'Cambiar idioma':'Change language'); });
     apply(currentSize);
   };
   document.addEventListener('click',function(e){
