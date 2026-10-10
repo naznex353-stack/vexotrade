@@ -5,27 +5,61 @@
 (function(){
   var VX = window.VX = window.VX || {};
 
-  /* ---------- backend hook (replace these stubs when the API exists) ---------- */
+  /* ---------- backend: Supabase auth ---------- */
+  var SUPABASE_URL = 'https://xxottccxxynqqhtwmpic.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_MNeC_p646Baby8KsWXafmQ_iXiROx44';
+  var sb = (window.supabase && window.supabase.createClient)
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true } })
+    : null;
+  var NOBACKEND = { ok:false, message:'Service unavailable. Please try again in a moment.' };
+  function friendly(err){
+    var m = (err && err.message) || '';
+    if(/Invalid login credentials/i.test(m)) return 'Incorrect email or password.';
+    if(/Email not confirmed/i.test(m)) return 'Confirm your email first. Check your inbox.';
+    if(/already registered|already been registered/i.test(m)) return 'An account with this email already exists.';
+    if(/Password should be/i.test(m)) return 'Password must be at least 8 characters.';
+    if(/rate limit/i.test(m)) return 'Too many attempts. Wait a minute and try again.';
+    return 'Something went wrong. Please try again.';
+  }
+
   VX.auth = {
     signIn: function(email, password){
-      return new Promise(function(resolve){
-        setTimeout(function(){ resolve({ok:true, redirect:'../index.html#dashboard'}); }, 900);
+      if(!sb) return Promise.resolve(NOBACKEND);
+      return sb.auth.signInWithPassword({ email: email, password: password }).then(function(r){
+        if(r.error) return { ok:false, message: friendly(r.error) };
+        return { ok:true, redirect:'../index.html' };
       });
     },
     signUp: function(data){
-      return new Promise(function(resolve){
-        setTimeout(function(){ resolve({ok:true, redirect:'login.html?registered=1'}); }, 900);
+      if(!sb) return Promise.resolve(NOBACKEND);
+      return sb.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          data: { full_name: data.name, country: data.country, newsletter: !!data.newsletter },
+          emailRedirectTo: location.origin + '/auth/login.html?registered=1'
+        }
+      }).then(function(r){
+        if(r.error) return { ok:false, message: friendly(r.error) };
+        return { ok:true, redirect:'login.html?registered=1' };
       });
     },
     requestReset: function(email){
-      return new Promise(function(resolve){
-        setTimeout(function(){ resolve({ok:true}); }, 900);
+      if(!sb) return Promise.resolve(NOBACKEND);
+      return sb.auth.resetPasswordForEmail(email, {
+        redirectTo: location.origin + '/auth/forgot-password.html?reset=1'
+      }).then(function(r){
+        if(r.error) return { ok:false, message: friendly(r.error) };
+        return { ok:true };
       });
     },
     signInWithGoogle: function(){
-      return new Promise(function(resolve){
-        setTimeout(function(){ resolve({ok:false, message:'Google sign-in will be available once the backend is connected.'}); }, 500);
-      });
+      if(!sb) return Promise.resolve(NOBACKEND);
+      return sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin + '/index.html' } })
+        .then(function(r){
+          if(r.error) return { ok:false, message:'Google sign-in is not available yet.' };
+          return { ok:true };
+        });
     }
   };
 
