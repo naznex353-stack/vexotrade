@@ -7,105 +7,111 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
 <style>
 html,body{margin:0;background:#0A0806;color:#F5F1E8;font-family:Manrope,sans-serif}
-.stage{width:1200px;height:760px;margin:0 auto;box-sizing:border-box;padding:26px 30px;display:flex;flex-direction:column;gap:16px;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(232,197,126,.16),transparent 65%),linear-gradient(180deg,#120E09,#0A0806)}
-.frame{flex:1;min-height:0;border:1px solid rgba(232,197,126,.35);border-radius:22px;padding:22px 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px;background:linear-gradient(170deg,rgba(40,31,17,.55),rgba(12,10,7,.7));box-shadow:0 0 60px -20px rgba(232,197,126,.35),inset 0 1px 0 rgba(255,255,255,.04)}
-.panel{border:1px solid rgba(232,197,126,.22);border-radius:14px;padding:14px 16px;box-sizing:border-box;background:rgba(14,11,7,.7);display:flex;flex-direction:column;gap:10px;min-width:0}
-.k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A79C8A}
-.t{font-family:Sora,sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#E8C57E}
+.stage{width:1200px;height:760px;margin:0 auto;box-sizing:border-box;padding:28px 34px;position:relative;background:radial-gradient(ellipse 55% 50% at 50% 35%,rgba(232,197,126,.14),transparent 70%),linear-gradient(180deg,#171109,#0A0806)}
+.glass{position:absolute;left:60px;right:60px;top:110px;bottom:70px;border:1.5px solid rgba(232,197,126,.55);border-radius:18px;box-sizing:border-box;padding:22px 24px;background:linear-gradient(170deg,rgba(38,29,15,.45),rgba(10,8,5,.75));box-shadow:0 0 50px -10px rgba(232,197,126,.35),inset 0 0 40px rgba(232,197,126,.05)}
+.corner{position:absolute;width:18px;height:18px;border:2px solid #E8C57E}
+.box{border:1px solid rgba(232,197,126,.35);border-radius:6px;padding:12px 14px;box-sizing:border-box;background:rgba(10,8,5,.55);position:relative;min-width:0}
+.hd{font-family:Sora,sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#E8C57E;text-align:center}
+.item{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid rgba(232,197,126,.25);border-radius:6px;padding:7px 10px;font-size:11.5px;color:#F5F1E8;background:rgba(232,197,126,.03)}
+.pct{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#E8C57E}
+.badge{width:16px;height:16px;border-radius:50%;border:1px solid #E8C57E;display:inline-flex;align-items:center;justify-content:center;font-size:8px;color:#E8C57E;flex:0 0 16px}
 .g{color:#3BD38C}.r{color:#FF5F6D}.gold{color:#E8C57E}.muted{color:#A79C8A}
-.bar{height:6px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:6px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px}
-.dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(232,197,126,.4);display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#E8C57E;flex:0 0 20px}
+.k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#A79C8A}
 </style>
 </head>
 <body>
 <div class="stage">
 
-  <div style="display:flex;justify-content:space-between;align-items:center">
-    <div style="display:flex;align-items:center;gap:10px">
-      <svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <defs><linearGradient id="g3" x1="0" y1="0" x2="40" y2="40"><stop offset="0" stop-color="#F4DFA6"/><stop offset="1" stop-color="#C9962F"/></linearGradient></defs>
-        <path d="M6 9l9 20a1 1 0 001.8 0L34 6" stroke="url(#g3)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 9l6 13 3-6" stroke="url(#g3)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
-      </svg>
-      <div style="font-family:Sora,sans-serif;font-weight:800;font-size:17px">Vexo<span class="gold">Trade</span></div>
-    </div>
-    <div style="text-align:center">
-      <div style="font-family:Sora,sans-serif;font-weight:800;font-size:22px;letter-spacing:.02em">PANEL DEL TRADER</div>
-      <div class="muted" style="font-size:12.5px">Evaluación FT-100K · Futuros CME · En vivo</div>
-    </div>
-    <div class="k" style="padding:8px 14px;border-radius:999px;border:1px solid rgba(59,211,140,.45);color:#3BD38C">● Fondeada</div>
+  <div style="position:absolute;left:34px;top:28px;display:flex;align-items:center;gap:10px">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <defs><linearGradient id="g3" x1="0" y1="0" x2="40" y2="40"><stop offset="0" stop-color="#F4DFA6"/><stop offset="1" stop-color="#C9962F"/></linearGradient></defs>
+      <path d="M6 9l9 20a1 1 0 001.8 0L34 6" stroke="url(#g3)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M14 9l6 13 3-6" stroke="url(#g3)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+    </svg>
+    <div style="font-family:Sora,sans-serif;font-weight:800;font-size:16px">Vexo<span class="gold">Trade</span></div>
+  </div>
+  <div style="position:absolute;top:26px;left:0;right:0;text-align:center">
+    <div style="font-family:Sora,sans-serif;font-weight:800;font-size:24px;letter-spacing:.02em">PANEL DEL TRADER</div>
+    <div style="font-family:Sora,sans-serif;font-weight:700;font-size:15px;color:#E8C57E;letter-spacing:.04em">FONDEADA · EVALUACIÓN FT-100K</div>
   </div>
 
-  <div class="frame">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1;min-height:0">
+  <div class="glass">
+    <span class="corner" style="left:-2px;top:-2px;border-right:0;border-bottom:0"></span>
+    <span class="corner" style="right:-2px;top:-2px;border-left:0;border-bottom:0"></span>
+    <span class="corner" style="left:-2px;bottom:-2px;border-right:0;border-top:0"></span>
+    <span class="corner" style="right:-2px;bottom:-2px;border-left:0;border-top:0"></span>
 
-      <div class="panel">
-        <div class="t">Reglas de la evaluación</div>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div><div class="row"><span>Objetivo de beneficio</span><span class="g">100%</span></div><div class="bar"><i style="width:100%;background:#E8C57E"></i></div></div>
-          <div><div class="row"><span>Límite de pérdida diaria</span><span class="g">21%</span></div><div class="bar"><i style="width:21%;background:#3BD38C"></i></div></div>
-          <div><div class="row"><span>Drawdown máximo</span><span class="g">52%</span></div><div class="bar"><i style="width:52%;background:#3BD38C"></i></div></div>
-          <div><div class="row"><span>Días operados</span><span class="gold">180%</span></div><div class="bar"><i style="width:100%;background:#E8C57E"></i></div></div>
-          <div><div class="row"><span>Consistencia</span><span class="r">38%</span></div><div class="bar"><i style="width:38%;background:#FF5F6D"></i></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;height:calc(100% - 40px)">
+
+      <div class="box" style="display:flex;flex-direction:column;gap:8px">
+        <div class="hd">Reglas de la evaluación</div>
+        <div class="item"><span><span class="badge">A</span>&nbsp; Objetivo de beneficio</span><span class="pct">126%</span></div>
+        <div class="item"><span><span class="badge">B</span>&nbsp; Límite de pérdida diaria</span><span class="pct g">21%</span></div>
+        <div class="item"><span><span class="badge">C</span>&nbsp; Drawdown máximo</span><span class="pct g">52%</span></div>
+        <div class="item"><span><span class="badge">D</span>&nbsp; Días operados</span><span class="pct">180%</span></div>
+        <div class="item"><span><span class="badge">E</span>&nbsp; Consistencia</span><span class="pct r">38%</span></div>
+        <div style="display:flex;justify-content:space-around;margin-top:auto;padding-top:6px">
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/><circle cx="32" cy="32" r="26" fill="none" stroke="#3BD38C" stroke-width="6" stroke-dasharray="110 164" transform="rotate(-90 32 32)" stroke-linecap="round"/><text x="32" y="36" text-anchor="middle" font-size="10" font-family="Sora" fill="#F5F1E8">67%</text></svg>
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/><circle cx="32" cy="32" r="26" fill="none" stroke="#E8C57E" stroke-width="6" stroke-dasharray="40 164" transform="rotate(-90 32 32)" stroke-linecap="round"/><text x="32" y="36" text-anchor="middle" font-size="10" font-family="Sora" fill="#F5F1E8">SÍ</text></svg>
         </div>
-        <div class="k" style="margin-top:auto">Todas las reglas cumplidas excepto consistencia</div>
       </div>
 
-      <div class="panel" style="align-items:center">
-        <div class="t" style="align-self:stretch">Reparto de beneficios</div>
-        <svg viewBox="0 0 160 160" width="150" height="150" aria-label="Reparto 90% trader, 10% empresa">
-          <circle cx="80" cy="80" r="58" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="16"/>
-          <circle cx="80" cy="80" r="58" fill="none" stroke="#E8C57E" stroke-width="16" stroke-dasharray="328.5 364.4" transform="rotate(-90 80 80)" stroke-linecap="round"/>
-          <circle cx="80" cy="80" r="58" fill="none" stroke="#3BD38C" stroke-width="16" stroke-dasharray="36.5 364.4" stroke-dashoffset="-328.5" transform="rotate(-90 80 80)" stroke-linecap="round"/>
-          <text x="80" y="88" text-anchor="middle" font-family="Sora" font-weight="800" font-size="22" fill="#F5F1E8">90%</text>
-        </svg>
-        <div style="display:flex;gap:18px;font-size:12px"><span><b class="gold">■</b> Trader 90%</span><span><b class="g">■</b> Empresa 10%</span></div>
-        <div class="k" style="text-align:center">Tu parte de $7,542: <span class="gold">$6,788</span></div>
-      </div>
-
-      <div class="panel">
-        <div class="t">Objetivo de evaluación</div>
-        <div style="display:flex;align-items:center;gap:14px">
-          <svg viewBox="0 0 120 120" width="104" height="104" aria-label="126% del objetivo">
-            <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="12"/>
-            <circle cx="60" cy="60" r="46" fill="none" stroke="#3BD38C" stroke-width="12" stroke-dasharray="289 289" transform="rotate(-90 60 60)" stroke-linecap="round"/>
-            <text x="60" y="66" text-anchor="middle" font-family="Sora" font-weight="800" font-size="18" fill="#F5F1E8">126%</text>
-          </svg>
-          <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px">
-            <div class="muted">Beneficio</div><div class="big" style="font-family:Sora;font-weight:800;font-size:18px" class="g"><span class="g">$7,542</span></div>
-            <div class="muted">Objetivo $6,000</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="box" style="display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div class="hd" style="align-self:stretch">Reparto de beneficios</div>
+          <div style="display:flex;align-items:center;gap:14px;width:100%;justify-content:center">
+            <div class="k" style="text-align:right">Trader<br><span class="gold" style="font-size:13px">90%</span></div>
+            <svg viewBox="0 0 160 160" width="130" height="130" aria-label="Reparto 90% trader, 10% empresa">
+              <circle cx="80" cy="80" r="56" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="18"/>
+              <circle cx="80" cy="80" r="56" fill="none" stroke="#E8C57E" stroke-width="18" stroke-dasharray="316 352" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="56" fill="none" stroke="#3BD38C" stroke-width="18" stroke-dasharray="35 352" stroke-dashoffset="-316" transform="rotate(-90 80 80)"/>
+            </svg>
+            <div class="k">Empresa<br><span class="g" style="font-size:13px">10%</span></div>
           </div>
         </div>
-        <div class="k" style="margin-top:4px">Pagos</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px">
-          <div class="row"><span><span class="dot">1</span>&nbsp; Pago anterior</span><span>$1,450</span></div>
-          <div class="row"><span><span class="dot">2</span>&nbsp; Disponible</span><span class="gold">$3,200</span></div>
-          <div class="row"><span><span class="dot">3</span>&nbsp; Próximo pago</span><span>15 oct</span></div>
+        <div class="box" style="display:flex;flex-direction:column;align-items:center;gap:8px;flex:1">
+          <div class="hd" style="align-self:stretch">Estado de pagos</div>
+          <div style="display:flex;align-items:center;gap:14px;width:100%">
+            <svg viewBox="0 0 120 120" width="100" height="100" aria-label="60% aprobados">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="12"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#3BD38C" stroke-width="12" stroke-dasharray="173 289" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <text x="60" y="66" text-anchor="middle" font-family="Sora" font-weight="800" font-size="16" fill="#F5F1E8">60%</text>
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:0">
+              <div class="item" style="font-size:11px"><span>Pago anterior</span><span class="g">Pagado</span></div>
+              <div class="item" style="font-size:11px"><span>Disponible</span><span class="gold">$3,200</span></div>
+            </div>
+          </div>
+          <div class="k" style="margin-top:auto">Próximo pago elegible: 15 oct 2026</div>
         </div>
+      </div>
+
+      <div class="box" style="display:flex;flex-direction:column;gap:8px">
+        <div class="hd">Tesorería</div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;height:90px;padding:4px 6px 0">
+          <div style="flex:1;height:40%;background:#E8C57E;border-radius:3px 3px 0 0;opacity:.6"></div>
+          <div style="flex:1;height:55%;background:#3BD38C;border-radius:3px 3px 0 0;opacity:.7"></div>
+          <div style="flex:1;height:35%;background:#FF5F6D;border-radius:3px 3px 0 0;opacity:.7"></div>
+          <div style="flex:1;height:70%;background:#3BD38C;border-radius:3px 3px 0 0;opacity:.7"></div>
+          <div style="flex:1;height:100%;background:#E8C57E;border-radius:3px 3px 0 0"></div>
+        </div>
+        <div class="k">Balance $107,542 · Beneficio $7,542</div>
+        <div class="hd" style="margin-top:4px">Últimas operaciones</div>
+        <div class="item"><span><span class="badge">A</span>&nbsp; ES · Largo</span><span class="pct g">+$874</span></div>
+        <div class="item"><span><span class="badge">B</span>&nbsp; NQ · Corto</span><span class="pct g">+$255</span></div>
+        <div class="item"><span><span class="badge">C</span>&nbsp; GC · Largo</span><span class="pct r">−$72</span></div>
+        <div class="item"><span><span class="badge">D</span>&nbsp; CL · Corto</span><span class="pct g">+$106</span></div>
+        <div class="item"><span><span class="badge">E</span>&nbsp; ES · Largo</span><span class="pct r">−$55</span></div>
       </div>
 
     </div>
 
-    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px;flex:0 0 190px">
-      <div class="panel">
-        <div class="t">Equity de la cuenta</div>
-        <svg viewBox="0 0 600 120" width="100%" height="110" preserveAspectRatio="none" aria-label="Equity">
-          <defs><linearGradient id="ev" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8C57E" stop-opacity=".3"/><stop offset="1" stop-color="#E8C57E" stop-opacity="0"/></linearGradient></defs>
-          <path d="M0,90 L60,80 L120,86 L180,64 L240,72 L300,52 L360,58 L420,40 L480,46 L540,30 L600,22 L600,120 L0,120Z" fill="url(#ev)"/>
-          <polyline points="0,90 60,80 120,86 180,64 240,72 300,52 360,58 420,40 480,46 540,30 600,22" fill="none" stroke="#E8C57E" stroke-width="2.4"/>
-        </svg>
-      </div>
-      <div class="panel">
-        <div class="t">Últimas operaciones</div>
-        <div style="display:flex;flex-direction:column;gap:7px;font-size:12px">
-          <div class="row"><span>ES · Largo</span><span class="g">+$874</span></div>
-          <div class="row"><span>NQ · Corto</span><span class="g">+$255</span></div>
-          <div class="row"><span>GC · Largo</span><span class="r">−$72</span></div>
-          <div class="row"><span>CL · Corto</span><span class="g">+$106</span></div>
-        </div>
-      </div>
+    <div style="position:absolute;left:24px;right:24px;bottom:14px;text-align:center">
+      <div class="k" style="margin-bottom:6px">Actividad de operaciones</div>
+      <svg viewBox="0 0 1100 40" width="100%" height="40" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,28 80,20 160,26 240,12 320,22 400,8 480,18 560,6 640,20 720,10 800,24 880,14 960,6 1040,18 1100,10" fill="none" stroke="#E8C57E" stroke-width="1.6"/>
+        <g fill="#E8C57E" opacity=".6"><circle cx="80" cy="20" r="2"/><circle cx="240" cy="12" r="2"/><circle cx="400" cy="8" r="2"/><circle cx="560" cy="6" r="2"/><circle cx="720" cy="10" r="2"/><circle cx="960" cy="6" r="2"/></g>
+      </svg>
     </div>
   </div>
 
