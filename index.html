@@ -163,6 +163,11 @@ h1.hero-h .l2{display:block; background:linear-gradient(100deg,#F4DFA6,var(--gol
 .kv .k{color:var(--muted); font-size:14.5px}
 .kv .v{font-family:var(--f-mono); font-weight:500; font-size:15px}
 .kv .v.good,.kv .v.warn{color:var(--fg)}
+.tiles{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:26px auto 22px; max-width:1040px}
+.tile{border:1px solid var(--border); border-radius:14px; padding:18px 12px; text-align:center; background:rgba(255,255,255,.02)}
+.tile .tk{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted-2)}
+.tile .tv{font-family:var(--f-display); font-weight:800; font-size:20px; margin-top:8px; color:var(--fg)}
+@media (max-width:800px){ .tiles{grid-template-columns:1fr 1fr} }
 .prog-foot{padding:26px 34px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
 .prog-foot .pf-note{color:var(--muted); font-size:13.5px; max-width:380px}
 
@@ -450,6 +455,13 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
       </div>
     </div>
     <p class="prog-note">Indicative figures — final pricing &amp; conditions are being confirmed</p>
+    <div class="tiles reveal">
+      <div class="tile"><div class="tk">Profit target</div><div class="tv" id="tTarget">$3,000</div></div>
+      <div class="tile"><div class="tk">Daily loss limit</div><div class="tv" id="tDaily">$1,100</div></div>
+      <div class="tile"><div class="tk">Max drawdown</div><div class="tv" id="tDD">$2,500</div></div>
+      <div class="tile"><div class="tk">Min trading days</div><div class="tv" id="tDays">1 day</div></div>
+      <div class="tile"><div class="tk">Profit split</div><div class="tv">Up to 90%</div></div>
+    </div>
     <div class="prog-card reveal">
       <div class="prog-head">
         <div><div class="psize" id="pSize">$<span>50,000</span> Account</div><div class="psub">Futures Evaluation → Funded</div></div>
@@ -707,6 +719,7 @@ footer{border-top:1px solid var(--border); background:var(--ink-2); padding-bloc
   function apply(sz){var d=DATA[sz];
     document.getElementById('pSize').innerHTML='$<span>'+d.size+'</span> '+T('Account');
     set('eTarget',d.target); set('eDaily',d.daily); set('eDrawdown',d.dd); set('eDays',d.days); set('eContracts',d.contracts); set('fConsistency',d.cons); set('fDaily',d.daily);
+    set('tTarget',d.target); set('tDaily',d.daily); set('tDD',d.dd); set('tDays',d.days);
   }
   var toggle=document.getElementById('sizeToggle');
   toggle.addEventListener('click',function(e){var b=e.target.closest('button'); if(!b) return;
